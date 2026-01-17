@@ -2,6 +2,4 @@
 title: "Home"
 ---
 
-Welcome to my portfolio. I'm an Analytics Engineer based in Stockholm, building data lakehouses on AWS.
-
-Browse my [projects](/projects/) to see what I've been working on.
+I'm an Analytics Engineer based in Stockholm, currently working in the Internal Data & Analytics team at [Funnel](https://funnel.io/). My team and I build and maintain our data platform on AWS, focusing on scalability for a data mesh inspired architecture.
