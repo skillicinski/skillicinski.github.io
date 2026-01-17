@@ -16,6 +16,6 @@ title = "Simon Kalicinski"
   bio = "Building data lakehouses on AWS with dbt, Airflow, and Spark. Based in Stockholm."
   links = [
     { github = "https://github.com/skillicinski" },
-    { linkedin = "https://linkedin.com/in/skillicinski" },
-    { email = "mailto:simon@example.com" },
+    { linkedin = "https://linkedin.com/in/simonkalicinski" },
+    { email = "mailto:simon.kalicinski@pm.me" },
   ]
