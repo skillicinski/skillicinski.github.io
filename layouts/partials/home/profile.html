@@ -1,0 +1,79 @@
+{{ $disableImageOptimization := .Site.Params.disableImageOptimization | default false }}
+<article class="cv-layout max-w-3xl mx-auto">
+  <!-- CV-style header: photo left, large name right-aligned, top-aligned -->
+  <header class="cv-header flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 mb-8 pb-8 border-b border-neutral-200 dark:border-neutral-700">
+    {{ with .Site.Params.Author.image }}
+      {{ $authorImage := "" }}
+      {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
+        {{ $authorImage = resources.GetRemote . }}
+      {{ else }}
+        {{ $authorImage = resources.Get . }}
+      {{ end }}
+      {{ if $authorImage }}
+        {{ $final := $authorImage }}
+        {{ $squareImage := $authorImage }}
+        {{ if not (or $disableImageOptimization (eq $authorImage.MediaType.SubType "svg")) }}
+          {{ $final = $authorImage.Fill (print "288x288 q" ( $.Site.Params.Author.imagequality | default "96" )) }}
+          {{ $shortSide := int (math.Min $authorImage.Width $authorImage.Height) }}
+          {{ $squareImage = $authorImage.Crop (printf "%dx%d" $shortSide $shortSide ) }}
+        {{ end }}
+        <img
+          class="portrait-img h-24 w-24 rounded-lg flex-shrink-0"
+          width="96"
+          height="96"
+          alt="{{ $.Site.Params.Author.name | default `Author` }}"
+          src="{{ $final.RelPermalink }}"
+          data-zoom-src="{{ $squareImage.RelPermalink }}">
+      {{ end }}
+    {{ end }}
+    <div class="flex-1">
+      <h1 class="cv-name">
+        {{ .Site.Params.Author.name | default .Site.Title }}
+      </h1>
+      <div class="cv-links text-lg">
+        {{ partialCached "author-links.html" . }}
+      </div>
+    </div>
+  </header>
+
+  <!-- Intro/bio section -->
+  <section class="prose dark:prose-invert max-w-none mb-10 text-left">
+    {{ .Content }}
+  </section>
+
+  <!-- Projects section - horizontal layout with CV-style tags -->
+  {{ if .Site.Params.homepage.showRecent }}
+  <section class="border-t border-neutral-200 dark:border-neutral-700 pt-8">
+    <h3 class="text-sm text-neutral-500 dark:text-neutral-400 uppercase tracking-wide mb-6">Projects</h3>
+    {{ $recent := where .Site.RegularPages "Type" "in" .Site.Params.mainSections | first (default 5 .Site.Params.homepage.showRecentItems) }}
+    {{ if not $recent }}
+      {{ $recent = .Site.RegularPages | first (default 5 .Site.Params.homepage.showRecentItems) }}
+    {{ end }}
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {{ range $recent }}
+      <a href="{{ .RelPermalink }}" class="project-card block p-4 bg-neutral-100 dark:bg-neutral-800 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+        <h4 class="font-semibold mb-1">{{ .Title }}</h4>
+        <time class="text-xs text-neutral-500 dark:text-neutral-400 block mb-2">
+          {{ .Date.Format "Jan 2006" }}
+        </time>
+        {{ with .Params.tags }}
+          <div class="flex flex-wrap gap-1">
+            {{ range first 4 . }}
+              <span class="skill-tag text-xs px-2 py-0.5 bg-neutral-200 dark:bg-neutral-700 rounded">{{ . }}</span>
+            {{ end }}
+          </div>
+        {{ end }}
+      </a>
+      {{ end }}
+    </div>
+    {{ if .Site.Params.homepage.showMoreLink }}
+      <div class="mt-6">
+        <a href="{{ .Site.Params.homepage.showMoreLinkDest | default `/posts/` }}" 
+           class="text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300">
+          View all projects →
+        </a>
+      </div>
+    {{ end }}
+  </section>
+  {{ end }}
+</article>

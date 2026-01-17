@@ -29,3 +29,110 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* CV-style layout refinements */
+.cv-layout {
+  padding: 2rem 1rem;
+}
+
+/* Large CV-style name */
+.cv-name {
+  font-size: 4rem !important;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1 !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  text-align: right;
+}
+
+@media (min-width: 640px) {
+  .cv-name {
+    font-size: 5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cv-name {
+    font-size: 6rem !important;
+  }
+}
+
+/* Ensure header content stretches to edges */
+.cv-layout header > div:last-child {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Top-align name with portrait */
+.cv-header {
+  align-items: flex-start !important;
+}
+
+.cv-header .cv-name {
+  margin-top: -0.1em; /* Fine-tune to align with portrait top */
+}
+
+/* Right-align contact links to match name */
+.cv-links {
+  text-align: right;
+  margin-top: 0.125rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cv-links > span,
+.cv-links > div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Smaller icons */
+.cv-links svg {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+/* Square portrait with rounded corners */
+.portrait-img {
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+/* Make the prose section match CV paragraph style */
+.cv-layout .prose {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.cv-layout .prose p {
+  margin-bottom: 1rem;
+}
+
+/* Project cards - grey fill with rounded borders like CV skills */
+.project-card {
+  border: none;
+  background-color: rgb(243, 244, 246) !important;
+}
+
+.dark .project-card {
+  background-color: rgb(38, 38, 38) !important;
+}
+
+.project-card:hover {
+  background-color: rgb(229, 231, 235) !important;
+}
+
+.dark .project-card:hover {
+  background-color: rgb(64, 64, 64) !important;
+}
+
+.project-card:hover,
+.project-card:hover * {
+  text-decoration: none !important;
+}
+
+/* Skill tags - match CV style */
+.skill-tag {
+  font-weight: 500;
+}
