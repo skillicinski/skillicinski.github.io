@@ -1,0 +1,31 @@
+/* Custom styles to match CV aesthetic */
+
+/* Import Inter font (closest free match to Neue Haas Grotesk) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Apply Inter as the primary font */
+:root {
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html {
+  font-family: var(--font-family);
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  font-weight: 600;
+}
+
+/* Cleaner, more minimal link styling */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
