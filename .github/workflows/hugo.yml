@@ -4,6 +4,17 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches: ["main"]
+    paths:
+      - "content/**"
+      - "config/**"
+      - "layouts/**"
+      - "assets/**"
+      - "static/**"
+      - "themes/**"
+      - "archetypes/**"
+      - "data/**"
+      - "i18n/**"
+      - ".github/workflows/hugo.yml"
   workflow_dispatch:
 
 permissions:
