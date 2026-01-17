@@ -65,12 +65,6 @@ a:hover {
   }
 }
 
-/* Ensure header content stretches to edges */
-.cv-layout header > div:last-child {
-  margin-right: 0 !important;
-  padding-right: 0 !important;
-}
-
 /* Header grid layout */
 .header-grid {
   display: grid;
