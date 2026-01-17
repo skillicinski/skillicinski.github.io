@@ -1,37 +1,43 @@
 {{ $disableImageOptimization := .Site.Params.disableImageOptimization | default false }}
 <article class="cv-layout max-w-3xl mx-auto">
-  <!-- CV-style header: photo left, large name right-aligned, top-aligned -->
-  <header class="cv-header flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 mb-8 pb-8 border-b border-neutral-200 dark:border-neutral-700">
-    {{ with .Site.Params.Author.image }}
-      {{ $authorImage := "" }}
-      {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
-        {{ $authorImage = resources.GetRemote . }}
-      {{ else }}
-        {{ $authorImage = resources.Get . }}
-      {{ end }}
-      {{ if $authorImage }}
-        {{ $final := $authorImage }}
-        {{ $squareImage := $authorImage }}
-        {{ if not (or $disableImageOptimization (eq $authorImage.MediaType.SubType "svg")) }}
-          {{ $final = $authorImage.Fill (print "288x288 q" ( $.Site.Params.Author.imagequality | default "96" )) }}
-          {{ $shortSide := int (math.Min $authorImage.Width $authorImage.Height) }}
-          {{ $squareImage = $authorImage.Crop (printf "%dx%d" $shortSide $shortSide ) }}
+  <!-- CV-style header: photo left, large name right-aligned -->
+  <header class="cv-header mb-8 pb-8 border-b border-neutral-200 dark:border-neutral-700">
+    <div class="header-grid">
+      <!-- Portrait column -->
+      <div class="portrait-col">
+        {{ with .Site.Params.Author.image }}
+          {{ $authorImage := "" }}
+          {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
+            {{ $authorImage = resources.GetRemote . }}
+          {{ else }}
+            {{ $authorImage = resources.Get . }}
+          {{ end }}
+          {{ if $authorImage }}
+            {{ $final := $authorImage }}
+            {{ $squareImage := $authorImage }}
+            {{ if not (or $disableImageOptimization (eq $authorImage.MediaType.SubType "svg")) }}
+              {{ $final = $authorImage.Fill (print "288x288 q" ( $.Site.Params.Author.imagequality | default "96" )) }}
+              {{ $shortSide := int (math.Min $authorImage.Width $authorImage.Height) }}
+              {{ $squareImage = $authorImage.Crop (printf "%dx%d" $shortSide $shortSide ) }}
+            {{ end }}
+            <img
+              class="portrait-img"
+              width="96"
+              height="96"
+              alt="{{ $.Site.Params.Author.name | default `Author` }}"
+              src="{{ $final.RelPermalink }}"
+              data-zoom-src="{{ $squareImage.RelPermalink }}">
+          {{ end }}
         {{ end }}
-        <img
-          class="portrait-img h-24 w-24 rounded-lg flex-shrink-0"
-          width="96"
-          height="96"
-          alt="{{ $.Site.Params.Author.name | default `Author` }}"
-          src="{{ $final.RelPermalink }}"
-          data-zoom-src="{{ $squareImage.RelPermalink }}">
-      {{ end }}
-    {{ end }}
-    <div class="flex-1">
-      <h1 class="cv-name">
-        {{ .Site.Params.Author.name | default .Site.Title }}
-      </h1>
-      <div class="cv-links text-lg">
-        {{ partialCached "author-links.html" . }}
+      </div>
+      <!-- Name and links column -->
+      <div class="name-col">
+        <h1 class="cv-name">
+          {{ .Site.Params.Author.name | default .Site.Title }}
+        </h1>
+        <div class="cv-links">
+          {{ partialCached "author-links.html" . }}
+        </div>
       </div>
     </div>
   </header>

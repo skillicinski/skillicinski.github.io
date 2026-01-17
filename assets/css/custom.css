@@ -35,26 +35,33 @@ a:hover {
   padding: 2rem 1rem;
 }
 
-/* Large CV-style name */
+/* Large CV-style name - sized to fit with portrait */
 .cv-name {
-  font-size: 4rem !important;
+  font-size: 2rem !important;
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1 !important;
+  line-height: 1.1 !important;
   margin-right: 0 !important;
   padding-right: 0 !important;
   text-align: right;
+  white-space: nowrap;
 }
 
 @media (min-width: 640px) {
   .cv-name {
-    font-size: 5rem !important;
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .cv-name {
+    font-size: 3rem !important;
   }
 }
 
 @media (min-width: 1024px) {
   .cv-name {
-    font-size: 6rem !important;
+    font-size: 3.5rem !important;
   }
 }
 
@@ -64,13 +71,49 @@ a:hover {
   padding-right: 0 !important;
 }
 
-/* Top-align name with portrait */
-.cv-header {
-  align-items: flex-start !important;
+/* Header grid layout */
+.header-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: stretch; /* Both columns same height */
+}
+
+/* Portrait column */
+.portrait-col {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Name column - name at top, links at bottom, right-aligned */
+.name-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between; /* Name top, links bottom */
+  min-height: 96px; /* Match portrait height */
 }
 
 .cv-header .cv-name {
   margin-top: -0.1em; /* Fine-tune to align with portrait top */
+}
+
+/* Mobile: stack vertically and center */
+@media (max-width: 639px) {
+  .header-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  
+  .name-col {
+    align-items: center;
+    min-height: auto;
+  }
+  
+  .cv-name {
+    text-align: center !important;
+  }
 }
 
 /* Right-align contact links to match name */
