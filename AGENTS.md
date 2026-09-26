@@ -22,12 +22,12 @@ Brief notes for AI agents working on this repo.
 - Keep the repo public-safe: assume all code is visible to everyone
 - Don't modify `.git/` or bypass branch protections
 
-## Hugo/Blowfish Specifics
+## Hugo Specifics
 
-- Theme is a git submodule at `themes/blowfish/` - don't modify it directly
-- Custom overrides go in `layouts/` and `assets/css/custom.css`
+- Templates go in `layouts/`
+- Styles go in `static/css/site.css`
 - Config lives in `config/_default/`
-- Content in `content/` (projects, pages)
+- Posts and pages live in `content/`
 
 ## Local Development
 

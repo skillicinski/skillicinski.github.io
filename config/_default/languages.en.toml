@@ -4,18 +4,11 @@ weight = 1
 title = "Simon Kalicinski"
 
 [params]
-  displayName = "EN"
-  isoCode = "en"
-  dateFormat = "2 January 2006"
   description = "Analytics Engineer building data lakehouses on AWS"
 
 [params.author]
   name = "Simon Kalicinski"
   image = "img/author.jpg"
-  headline = "Analytics Engineer"
-  bio = "Building data lakehouses on AWS with dbt, Airflow, and Spark. Based in Stockholm."
-  links = [
-    { github = "https://github.com/skillicinski" },
-    { linkedin = "https://linkedin.com/in/simonkalicinski" },
-    { email = "mailto:simon.kalicinski@pm.me" },
-  ]
+  github = "https://github.com/skillicinski"
+  linkedin = "https://linkedin.com/in/simonkalicinski"
+  email = "mailto:simon.kalicinski@pm.me"

@@ -1,8 +1,5 @@
 # Markup configuration
 
-[goldmark]
-  [goldmark.renderer]
-    unsafe = true
-
 [highlight]
-  noClasses = false
+  noClasses = true
+  style = "github"
