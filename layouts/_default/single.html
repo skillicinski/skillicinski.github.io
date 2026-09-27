@@ -18,11 +18,12 @@
     </p>
     {{ with .Description }}<p class="article-description">{{ . }}</p>{{ end }}
   </header>
-
-  {{ with .TableOfContents }}
-  <div class="table-of-contents">
-    {{ . }}
-  </div>
+  {{ if .Params.toc }}
+    {{ with .TableOfContents }}
+    <div class="table-of-contents">
+      {{ . }}
+    </div>
+    {{ end }}
   {{ end }}
 
   <div class="prose article-content">{{ .Content }}</div>
