@@ -1,7 +1,7 @@
 ---
 title: "I Have a Reading Problem"
 date: "2026-09-26"
-draft: true
+draft: false
 description: "And I've decided to finally try to do something about it."
 tags: ""
 categories: ""
